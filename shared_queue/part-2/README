@@ -1,0 +1,63 @@
+###############################
+Description
+###############################
+
+This program implements shared queues are implemented in kernel space and managed by device driver "squeue".
+
+Here a total of 2000 messages are created by 4 sender threads (Posix Threads) which
+enqueue meesages into a device bus_in_q. From this device, a bus daemon thread
+(PThread) dequeue the messages and writes into 3 output devices bus_out_q1, bus_out_q2 and bus_out_q3 from which 3 receiver threads (Pthreads)
+dequeue the message.
+
+
+
+###############################
+Steps to execute
+###############################
+
+#make
+#insmod testDriver.ko
+#./testmain
+
+
+To clean final executables, run:
+#make clean
+#rmmod testDriver
+
+
+
+###############################
+Sample Output
+###############################
+
+No of dropped messages = 1095
+Average Elapsed Time = 1.255725 milliseconds
+Standard Deviation of Elapsed Time = 1.0679304012 milliseconds
+
+
+###############################
+Explanation:
+###############################
+
+Of the total 2000 messages only 1095 meesages are successfully dequeued by the receiver.
+So a total of 2000-1095 = 905 messages are dropped. 
+
+
+Average elapsed time is the total queueing time since its first enqueue operation to the final
+dequeue operation. 
+
+
+Standard deviation of Elapsed time is the standard deviation of the population of
+average elapsed time.
+
+
+###############################
+NOTE
+###############################
+
+This program is tested on the machine that has the following configuration:
+
+OS - Linux
+Distro - Ubuntu 16.04.2
+Linux kernel version - 4.4.0-38-generic
+gcc version 5.4.0 20160609

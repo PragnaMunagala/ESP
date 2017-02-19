@@ -1,0 +1,98 @@
+###############################
+Description
+###############################
+
+In this task, we show how the time that a signal handler associated to a thread gets executed in the following
+conditions:
+Parta: The thread is running
+Partb: The thread is runnable
+Partc: The thread is blocked by a semaphore
+Partd: The thread is delayed
+
+In Parta, a thread is created and a SIGUSR1 signal is generated to this running thread and the time signal handler
+associated to the thread is invoked is collected from the kernelshark using trace-cmd. The results are shown in 
+Report file.
+
+In Partb,two thread are created with different priorities and a SIGUSR1 signal is generated to the runnable thread
+(thread with low priority) and the time signal handler associated to the runnable thread is invoked is collected 
+from the kernelshark using trace-cmd. The results are shown in Report file.
+
+In Partc, a thread is created and a SIGUSR1 signal is generated to thread and the thread is blocked by a semaphore. 
+The time signal handler associated to the blocked thread is invoked is collected from the kernelshark using 
+trace-cmd. The results are shown in Report file.
+
+In Partd, a thread is created and a SIGUSR1 signal is generated to the thread and the thread is delayed using nanosleep.
+The time signal handler associated to the thread is invoked is collected from the kernelshark using trace-cmd. 
+The results are shown in Report file.
+
+In all the parts, the program is being terminated once the signal handler is executed.
+
+
+
+
+###############################
+Steps to execute
+###############################
+
+#Open the terminal and run the following command 
+	sudo -s
+
+#Enter the root password
+
+#Clone the repository from Githubto the local directory
+
+#Execute the steps for various parts as mentioned below
+
+Parta:
+#In the terminal, open the current directory containing the Parta files and run the following commands
+	make
+	trace-cmd record -e signal -e sched_switch ./parta
+	kernelshark
+
+#Zoom in the graph in kernelshark to see the generation and delivery of the signal and also status of 
+sched_switch
+
+
+Partb:
+#In the terminal, open the current directory containing the Partb files and run the following commands
+	make
+	trace-cmd record -e signal -e sched_switch ./partb
+	kernelshark
+
+#Zoom in the graph in kernelshark to see the generation and delivery of the signal and also status of 
+sched_switch
+
+
+Partc:
+#In the terminal, open the current directory containing the Partc files and run the following commands
+	make
+	trace-cmd record -e signal -e sched_switch ./partc
+	kernelshark
+
+#Zoom in the graph in kernelshark to see the generation and delivery of the signal and also status of 
+sched_switch
+
+
+Partd:
+#In the terminal, open the current directory containing the Partd files and run the following commands
+	make
+	trace-cmd record -e signal -e sched_switch ./partd
+	kernelshark
+
+#Zoom in the graph in kernelshark to see the generation and delivery of the signal and also status of 
+sched_switch
+
+
+
+
+
+###############################
+NOTE
+###############################
+
+This program is tested on
+Host machine has the following configuration.
+#OS - Linux
+#Distro - Ubuntu 16.04.2
+#Linux kernel version - 4.4.0-38-generic
+#gcc version 5.4.0 20160609

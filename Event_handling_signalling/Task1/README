@@ -1,0 +1,52 @@
+###############################
+Description
+###############################
+
+This program implements setjmp and longjmp to demonstrate an example imprecise computation programming 
+pattern in which executing computation will be terminated and the existing results are put out when we 
+double click the right mouse button.
+
+The imprecise computation done in this program is finding the sum of the first 'n' even numbers where 'n' 
+is the number of times the loop will run until the signal is generated when the double click event of 
+right mouse button is captured.
+
+A POSIX thread is created in which the mouse double click event is captured and then the signal is delivered
+in whose handler longjmp is handled. The return type '-1' from longjmp terminates the program and outputs the 
+sum of the even numbers calculated till then.
+
+
+
+
+###############################
+Steps to execute
+###############################
+
+#Open the terminal and run the following command 
+	sudo -s
+
+#Enter the root password
+	
+#Run the following command
+	cat /proc/bus/input/devices 
+ and note the event number '#' for the input device mouse from the list of input devices
+ 
+#Open the main.c file and in line number 38, enter the event number '#' noted in the previous step in "/dev/input/event#"
+
+#Open the current directory having the files downloaded in the terminal and run the following command
+	bash task1.sh
+
+#Double click the right mouse button to see the imprecise computed result
+
+
+
+
+###############################
+NOTE
+###############################
+
+This program is tested on the
+Host machine has the following configuration.
+#OS - Linux
+#Distro - Ubuntu 16.04.2
+#Linux kernel version - 4.4.0-38-generic
+#gcc version 5.4.0 20160609

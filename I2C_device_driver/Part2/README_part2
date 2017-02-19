@@ -1,0 +1,40 @@
+###############################
+Description
+###############################
+
+This program defines an i2c-client driver module for the EEPROM(flash device)  to invoke user calls to perform read and write operations performed on a 24FC256 EEPROM.
+This driver module supports five calls namely open, read, write, ioctl and close and has the suport for the operation of blocking read and write calls.
+This driver program also lights up the led when a read or write operation is taking place.
+
+
+###############################
+Steps to execute
+###############################
+
+#On the host machine, place the files i2c_flash.c, main.c, make into a directory. From the same directory type the command "make".
+#Now you are able to see the i2c_flash.ko file in the same directory. 
+#Connect the board to a host and setup a serial connection between the host and the board.
+#Retrieve the IP address of the board.
+#Login to the board and create a directory namely "part2" using the command "mkdir part2". 
+#on the user terminal run the 'make' command
+#Copy the files i2c_flash.ko, main.c from their current directory to the board using the command scp <filename> root@<IP address>:home/root/part2
+#Now on the serial terminal that is accessing the board enter into the part2 directory using the command "cd part2".
+#Now insert the driver module by typing the command "insmod i2c_flash.ko"
+#Type the following commands to execute the program and get the result.
+#gcc -c main.c 
+#gcc -o final main.o
+#./final 
+
+
+
+###############################
+NOTE
+###############################
+
+This program is tested on the Galileo Gen2 board that has the linux image booted on it using a micro SD card.
+OHost machine has the following configuration.
+Host machine has the following configuration.
+#OS - Linux
+#Distro - Ubuntu 16.04.2
+#Linux kernel version - 4.4.0-38-generic
+#gcc version 5.4.0 20160609

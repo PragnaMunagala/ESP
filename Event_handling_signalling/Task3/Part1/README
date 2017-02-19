@@ -1,0 +1,50 @@
+###############################
+Description
+###############################
+
+This program shows the following statement is true for SIGIO signal
+	“A process-directed signal may be delivered to any one of the threads
+	that does not currently have the signal blocked. If more than one of the threads has the signal unblocked,
+	then the kernel chooses an arbitrary thread to which to deliver the signal.”
+
+Five threads are created in this program and process id of the arbitrary thread to which the signal will be delivered
+is displayed using printf in the signal handler.
+
+
+
+
+###############################
+Steps to execute
+###############################
+
+#Open the terminal and run the following command 
+	sudo -s
+
+#Enter the root password
+	
+#Open the current directory having the files downloaded in the terminal and run the following commands
+	make
+	./part1 &
+	
+#The output of the above command will be in form of
+	[number1] number2
+
+#Run the following command to generate the SIGIO signal which prints the thread id of the arbitrary thread to which 
+signal is delivered.
+	kill -SIGIO %number1
+
+#Press Enter or ctrl+c to terminate the program
+
+
+
+
+###############################
+NOTE
+###############################
+
+This program is tested on the
+Host machine has the following configuration.
+#OS - Linux
+#Distro - Ubuntu 16.04.2
+#Linux kernel version - 4.4.0-38-generic
+#gcc version 5.4.0 20160609

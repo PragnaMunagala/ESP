@@ -1,0 +1,61 @@
+###############################
+Description
+###############################
+
+This program implements a sharedQueue as a library unit in user space.
+
+Here a total of 2000 messages are created by 4 sender threads (Posix Threads) which
+enqueue meesages into a shared Queue of length 10. From this shared queue, a bus daemon thread
+(PThread) dequeue the messages and enqueues into 3 shared queues from which 3 receiver threads (Pthreads)
+dequeue the message.
+
+
+
+###############################
+Steps to execute
+###############################
+
+#make
+#./final
+
+
+To clean final executables, run:
+#make clean
+
+
+
+###############################
+Sample Output
+###############################
+
+No of dropped messages = 996
+Average Elapsed Time = 0.000220 milliseconds
+Standard Deviation of Elapsed Time = 0.0006485384 milliseconds
+
+
+###############################
+Explanation:
+###############################
+
+Of the total 2000 messages only 1004 meesages are successfully dequeued by the receiver.
+So a total of 2000-1004 = 996 messages are dropped. 
+
+
+Average elapsed time is the total queueing time since its first enqueue operation to the final
+dequeue operation. 
+
+
+Standard deviation of Elapsed time is the standard deviation of the population of
+average elapsed time.
+
+
+###############################
+NOTE
+###############################
+
+This program is tested on the machine that has the following configuration:
+
+OS - Linux
+Distro - Ubuntu 16.04.2
+Linux kernel version - 4.4.0-38-generic
+gcc version 5.4.0 20160609

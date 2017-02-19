@@ -1,0 +1,39 @@
+###############################
+Description
+###############################
+
+This program implements a libary to perform IO initialization operations using GPIO that is accessed from the user space. 
+We are implementing thread functions to perform LED matrix display and pulse measurement using HC - SR04 sensor. The Patterns being displayed on the LED Matrix are written using spidev1.0 device and these patterns change the speed and direction based on the distance measured using pulse measurement sensor. 
+This led display program uses the spidev1.0 driver modules to work with SPI devices in linux.
+
+###############################
+Steps to execute
+###############################
+
+#Connect the board to a host and setup a serial connection between the host and the board.
+#Retrieve the IP address of the board.
+#Login to the board and create a directory namely "part1" using the command "mkdir part1". 
+#Open the Run.sh file and change the IP address in scp <file name> root@<IP ADDRESS>:/home/root/part1 to current board IP address
+#Now type the following commands by entering into the directory containing the files in host terminal
+
+#bash Run.sh
+
+
+#Now on the serial terminal that is accessing the board(target) enter into the part1 directory using the command "cd part1".
+#Now type the following commands to execute the program and obtain the result.
+
+#bash Final.sh
+
+
+
+
+###############################
+NOTE
+###############################
+
+This program is tested on the Galileo Gen2 board that has the linux image booted on it using a micro SD card.
+Host machine has the following configuration.
+#OS - Linux
+#Distro - Ubuntu 16.04.2
+#Linux kernel version - 4.4.0-38-generic
+#gcc version 5.4.0 20160609

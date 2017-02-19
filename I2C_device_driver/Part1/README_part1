@@ -1,0 +1,33 @@
+###############################
+Description
+###############################
+
+This program implements a libary to perform page read and write operations performed on a 24FC256 EEPROM using I2C device that is accessed from the user space. 
+We are implementing five functions to initialise, read, write, erase and setting the current page position. 
+This library program uses the i2c-dev driver modules to work with I2C devices in linux. This library program also lights up the led when a read or write operation is taking place.
+
+###############################
+Steps to execute
+###############################
+
+#Connect the board to a host and setup a serial connection between the host and the board.
+#Retrieve the IP address of the board.
+#Login to the board and create a directory namely "part1" using the command "mkdir part1". 
+#Copy the files EEPROM.c, EEPROM.h, main.c, Makefile from their current directory to the board using the command scp <filename> root@<IP address>:home/root/part1
+#Now on the serial terminal that is accessing the board enter into the part1 directory using the command "cd part1".
+#Now type the following commands to execute the program and obtain the result.
+
+#make
+#./final
+
+#To clean final executables, run:
+#make clean
+
+
+
+This program is tested on the Galileo Gen2 board that has the linux image booted on it using a micro SD card.
+Host machine has the following configuration.
+#OS - Linux
+#Distro - Ubuntu 16.04.2
+#Linux kernel version - 4.4.0-38-generic
+#gcc version 5.4.0 20160609

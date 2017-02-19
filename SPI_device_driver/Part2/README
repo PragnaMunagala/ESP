@@ -1,0 +1,48 @@
+###############################
+Description
+###############################
+
+This program defines an led_dev driver module for the MAX7219-MAX7221 LED Matrix display device to perform ioctl and write operations.
+This driver module supports four calls namely open, ioctl, write and close.
+Ioctl function is to store 10 display patterns in a kernel space buffer and write function is to write patterns on the LED Matrix display.
+
+This program also defines an pulse_dev driver module for the HCSR04 sensor to perform read and write operations.
+This driver module supports four calls namely open, read, write and close.
+Write function is to setup the trigger to be given to the sensor and raise an interrupt for echo signal and read function is to calculate the pulse width of the echo signal.
+
+
+###############################
+Steps to execute
+###############################
+
+#On the host machine, place the files led_dev.c, main.c, pulse_dev.c and Makefile into a directory. From the same directory type the command "make" in terminal.
+#Now you are able to see the led_dev.ko and pulse_dev.ko files in the same directory. 
+#Connect the board to a host and setup a serial connection between the host and the board.
+#Retrieve the IP address of the board.
+#Login to the board and create a directory namely "part2" using the command "mkdir part2". 
+#Open the copy.sh file and change the IP address in scp <file name> root@<IP ADDRESS>:/home/root/part1 to current board IP address
+#Now type the following commands by entering into the directory containing the files in host terminal
+
+#bash copy.sh
+
+
+#Now on the serial terminal that is accessing the board(target) enter into the part1 directory using the command "cd part2".
+#Now type the following commands to execute the program and obtain the result.
+
+#bash board.sh
+
+
+
+
+###############################
+NOTE
+###############################
+
+This program is tested on the Galileo Gen2 board that has the linux image booted on it using a micro SD card.
+OHost machine has the following configuration.
+Host machine has the following configuration.
+#OS - Linux
+#Distro - Ubuntu 16.04.2
+#Linux kernel version - 4.4.0-38-generic
+#gcc version 5.4.0 20160609
+Contact GitHub 

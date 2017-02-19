@@ -1,0 +1,61 @@
+###############################
+Description
+###############################
+
+In this part a library is built that allows SIGIO signal being delivered to all threads that are registered 
+to receive the signal.
+
+In the main program, five threads are created and in the thread function register_threads() function from sig_lib.c 
+is called to register the even numbered threads out of the five threads to receive the signal.
+
+The mouse left click event is used to trigger the SIGIO signal from the thread function and in the signal handler,
+handle_threads() function from sig_lib.c library is being called to deliver the SIGIO signal to all the registered 
+threads.
+
+The printf statement in handle_threads() in sig_lib.c is to display the thread ids of the registered threads to which
+the signal is being delivered.
+
+The printf statement in the signal handler function in main.c is to display the thread ids of the threads calling the
+signal handler. The display of this printf in the terminal will be asynchronous as it is written outside of mutex_lock
+as IO commands should not be inside the lock.
+
+
+
+
+###############################
+Steps to execute
+###############################
+
+#Open the terminal and run the following command 
+	sudo -s
+
+#Enter the root password
+	
+#Run the following command
+	cat /proc/bus/input/devices 
+ and note the event number '#' for the input device mouse from the list of input devices
+ 
+#Open the main.c file and in line number 45, enter the event number '#' noted in the previous step in "/dev/input/event#"
+
+#Open the current directory having the files downloaded in the terminal and run the following commands
+	make
+	./part2
+
+#Click the left button of mouse to generate the SIGIO signal and the printf statements as mentioned in the above description
+will be displayed.
+
+#Press ctrl+c to terminate the program.
+
+
+
+
+###############################
+NOTE
+###############################
+
+This program is tested on the
+Host machine has the following configuration.
+#OS - Linux
+#Distro - Ubuntu 16.04.2
+#Linux kernel version - 4.4.0-38-generic
+#gcc version 5.4.0 20160609
